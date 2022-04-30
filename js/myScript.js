@@ -6,12 +6,15 @@ const UI_URL = "http://127.0.0.1:5500";
 
 /************************** ADD Location************************************* */
 
+
 function addLocation() {
+	const name = document.getElementById('name').value;
 	const status = document.getElementById('status').value;
 	const capacity = document.getElementById('capacity').value;
 
 	const loationObj = {};
 
+	loationObj.name = name;
 	loationObj.status = status;
 	loationObj.capacity = capacity;
 
@@ -71,18 +74,21 @@ async function callGetOneLocationDataAPI(id) {
 }
 function fillEditLocationPage(loc) {
 	document.getElementById('id').value = loc.id;
+	document.getElementById('name').value = loc.name;
 	document.getElementById('status').value = loc.status;
 	document.getElementById('capacity').value = loc.capacity;
 }
 
 function editLocation() {
 	const id = document.getElementById('id').value;
+	const name = document.getElementById('name').value;
 	const status = document.getElementById('status').value;
 	const capacity = document.getElementById('capacity').value;
 
 	const loationObj = {};
 
 	loationObj.id = id;
+	loationObj.name = name;
 	loationObj.status = status;
 	loationObj.capacity = capacity;
 
@@ -153,6 +159,9 @@ function fillLocationTable(allLocations) {
 		let idCol = document.createElement('td');
 		idCol.innerHTML = loc.id;
 
+		let nameCol = document.createElement('td');
+		nameCol.innerHTML = loc.name;
+
 		let statusCol = document.createElement('td');
 		statusCol.innerHTML = loc.status;
 
@@ -192,6 +201,7 @@ function fillLocationTable(allLocations) {
 
 
 		row.append(idCol);
+		row.append(nameCol);
 		row.append(statusCol);
 		row.append(capacityCol);
 		row.append(editBtnCol);
